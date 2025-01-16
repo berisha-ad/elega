@@ -1,3 +1,3 @@
 <?php
 
-require '../src/views/register.php';
+require basePath('src/views/register.php');
