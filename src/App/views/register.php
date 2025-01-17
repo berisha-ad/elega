@@ -1,9 +1,9 @@
-<?php require(basePath('src/utils/validation.php')) ?> 
-<?php require(basePath('src/templates/head.php')) ?>
-<?php require(basePath('src/templates/navbar.php')) ?>
+<?php require(basePath('src/App/utils/validation.php')) ?>
+<?php require(basePath('src/App/templates/head.php')) ?>
+<?php require(basePath('src/App/templates/navbar.php')) ?>
     <main>
         <section class="login-section">
-            <div class="login-wrapper">
+            <div class="login-wrapper border">
                 <h1 class="hl-mid">Registrieren</h1>
                 <?php if ($success) { ?>
                     <p class="success"><?= $success ?></p>
@@ -33,7 +33,7 @@
                             <p class="error"><?= $errors['rights']?></p>
                         <?php } ?>
                     </div>
-                    <input class="login-btn" type="submit" value="Registrieren">
+                    <input class="btn" type="submit" value="Registrieren">
                     <p>Sie sind haben bereits ein Konto? <a href="./login">Anmelden</a></p>
                 </form>
             </div>

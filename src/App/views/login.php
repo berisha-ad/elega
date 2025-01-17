@@ -1,13 +1,13 @@
-<?php require('../src/templates/head.php') ?>
-<?php require('../src/templates/navbar.php') ?>
+<?php require(basePath('src/App/templates/head.php')) ?>
+<?php require(basePath('src/App/templates/navbar.php')) ?>
     <main>
         <section class="login-section">
-            <div class="login-wrapper">
+            <div class="login-wrapper border">
                 <h1 class="hl-mid">Anmelden</h1>
                 <form class="login-form" action="" method="post">
                     <input type="email" placeholder="E-Mail-Adresse" required>
                     <input type="password" placeholder="Passwort" required>
-                    <input class="login-btn" type="submit" value="Anmelden">
+                    <input class="btn" type="submit" value="Anmelden">
                     <p>Noch kein Konto? <a href="/register">Konto erstellen</a></p>
                 </form>
             </div>
@@ -15,4 +15,4 @@
             <div class="gradient"></div>
         </section>
     </main>
-    <?php require('../src/templates/footer.php') ?>
+    <?php require(basePath('src/App/templates/footer.php')) ?>

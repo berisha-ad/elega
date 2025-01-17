@@ -1,5 +1,5 @@
-<?php require(basePath('src/templates/head.php')) ?>
-<?php require(basePath('src/templates/navbar.php')) ?>
+<?php require(basePath('src/App/templates/head.php')) ?>
+<?php require(basePath('src/App/templates/navbar.php')) ?>
 
 <section class="error-section container">
     <div class="error-content">
@@ -10,4 +10,4 @@
 </section>
 
 
-<?php require(basePath('src/templates/footer.php')) ?>
+<?php require(basePath('src/App/templates/footer.php')) ?>

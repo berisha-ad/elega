@@ -4,9 +4,9 @@ require '../src/helpers.php';
 
 errorReporting();
 
-require basePath('src/Router.php');
+require basePath('src/Framework/Router.php');
 
-require basePath('src/Database.php');
+require basePath('src/Framework/Database.php');
 
 $router = new Router();
 
