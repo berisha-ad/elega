@@ -26,27 +26,6 @@
                         <p class="error"><?= $errors['confirm'] ?></p>
                         <?php } ?>
                     <input type="password" name="confirm" placeholder="Passwort bestätigen" required>
-                    <div class="gender-selection">
-                        <p>Wähle dein Geschlecht:</p>
-                        <input type="radio" name="gender" id="male" value="male">
-                        <label for="male">Männlich</label>
-                        <input type="radio" name="gender" id="female" value="female">
-                        <label for="female">Weiblich</label>
-                        <input type="radio" name="gender" id="nogender" value="nogender">
-                        <label for="nogender">Keine Angabe</label>
-                        <?php if(!empty($errors['gender'])) { ?>
-                            <p class="error"><?= $errors['gender']?></p>
-                        <?php } ?>
-                    </div>
-                    <div>
-                        <label for="country">Wähle dein Land:</label>
-                        <select name="country" id="country" required>
-                            <option value="austria">Österreich</option>
-                            <option value="germany">Deutschland</option>
-                            <option value="switzerland">Schweiz</option>
-                            <option value="france">Frankreich</option>
-                        </select>
-                    </div>
                     <div>
                         <label for="rights">Ich akzeptiere die <a href="/">Datenschutzbestimmungen</a></label>
                         <input type="checkbox" name="rights" id="rights" value="confirmed" required>

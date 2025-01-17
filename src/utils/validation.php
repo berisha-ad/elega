@@ -6,8 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     $confirm = $_POST['confirm'];
-    $gender = $_POST['gender'];
-    $country = $_POST['country'];
     $rights = $_POST['rights'];
 
     $errors = [];
@@ -55,9 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($password !== $confirm) {
         $errors['confirm'] = 'Die Passwörter stimmen nicht überein.';
-    }
-    if (empty($gender)) {
-        $errors['gender'] = 'Wähle etwas aus!';
     }
     if ($rights !== 'confirmed') {
         $errors['rights'] = 'Sie müssen unsere Datenschutzbestimmungen akzeptieren!';
