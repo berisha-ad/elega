@@ -32,7 +32,7 @@ class Router {
             }
         }
         http_response_code(404);
-            require '../src/error/404.php';
-            exit;
+        loadView("404");
+        exit;
     }
 }

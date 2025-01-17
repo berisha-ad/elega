@@ -1,6 +1,6 @@
 <footer>
     <div class="footer-wrapper container">
-        <a href="./"><img class="nav-logo" src="./images/svg/elega.svg" width="100px" alt="Logo des Unternehmen"></a>
+        <a href="./"><img class="nav-logo" src="/images/svg/elega.svg" width="100px" alt="Logo des Unternehmen"></a>
         <ul class="footer-link-wrapper">
             <li><a href="">Home</a></li>
             <li><a href="">Über uns</a></li>

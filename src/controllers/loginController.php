@@ -1,3 +1,3 @@
 <?php
 
-require basePath('src/views/login.php');
+loadView("login");

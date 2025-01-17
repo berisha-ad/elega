@@ -1,14 +1,3 @@
-<?php 
-
-    $cars = [
-        "Audi",
-        "Bmw",
-        "Mercedes",
-        "opel"
-    ]
-
-?>
-
 <?php require('../src/templates/head.php') ?>
 <?php require('../src/templates/navbar.php') ?>
     <main>
@@ -38,17 +27,17 @@
             <h2>Neue Fahrzeuge</h2>
             <div class="cars-grid">
                 <?php foreach ($cars as $car) { ?>
-                <a href="/">
+                <a href="/cars/car?<?= $car['id'] ?>">
                     <div class="car-card">
                         <img class="car-image" src="./images/jpg/hero-image.jpg" alt="Titel vom Bild">
-                        <h3><?= $car ?></h3>
-                        <p>Description: Allrad, Automatik, Leder... </p>
+                        <h3><?= $car['brand'] ?> <?= $car['model'] ?></h3>
+                        <p><?= shortenText($car['description'], 10) ?></p>
                         <div class="stats">
-                            <p>50000km</p>
-                            <p>2019</p>
-                            <p>303ps</p>
+                            <p><?= $car['mileage'] ?> km</p>
+                            <p><?= $car['year'] ?></p>
+                            <p><?= $car['horsepower'] ?> PS</p>
                         </div>
-                        <p class="hl-small">29990€</p>
+                        <p class="hl-small">€<?= $car['price'] ?></p>
                     </div>
                 </a>
                 <?php } ?>

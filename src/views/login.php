@@ -8,7 +8,7 @@
                     <input type="email" placeholder="E-Mail-Adresse" required>
                     <input type="password" placeholder="Passwort" required>
                     <input class="login-btn" type="submit" value="Anmelden">
-                    <p>Noch kein Konto? <a href="./registrieren">Konto erstellen</a></p>
+                    <p>Noch kein Konto? <a href="/register">Konto erstellen</a></p>
                 </form>
             </div>
             <img class="hero-image" src="./images/jpg/hero-image.jpg" alt="">

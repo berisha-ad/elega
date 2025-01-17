@@ -1,6 +1,6 @@
 <header class="navbar" id="navbar">
         <nav class="menu container">
-            <a href="/"><img class="nav-logo" src="./images/svg/elega.svg" width="100px" alt="Logo des Unternehmen"></a>
+            <a href="/"><img class="nav-logo" src="/images/svg/elega.svg" width="100px" alt="Logo des Unternehmen"></a>
             <ul class="link-wrapper" id="linkWrapper">
                 <li><a href="/">Home</a></li>
                 <li><a href="/ueber-uns">Über uns</a></li>
