@@ -1,5 +1,9 @@
 <?php
 
+namespace Framework;
+
+use PDO;
+
 class Database {
 
     public $conn; 
@@ -19,7 +23,7 @@ class Database {
         }
     }
 
-    public function query(string $query): PDOStatement {
+    public function query(string $query): \PDOStatement {
         try {
             $stm = $this->conn->prepare($query);
             $stm->execute();

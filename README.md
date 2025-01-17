@@ -1,29 +1,35 @@
 
 
 # Beschreibung:
-Elega ist eine Webanwendung eines Autohauses, welche den
-Betreibern die Möglichkeit bietet, sich einzuloggen und 
-ihre Fahrzeuge direkt zu verwalten. Weiters können sich
-Endnutzer registrieren, um Autos direkt über die Webseite
-anzufragen und mit dem Verkäufer in Kontakt zu treten.
+Elega ist eine Marktplatz in der Nutzer die Möglichkeit haben,
+nach ihrer Registrierung ihr Fahrzeug zu inserieren. Außerdem
+ist es in der Anwendung möglich, Fahrzeuge direkt beim Nutzer,
+der es veröffentlicht hat, anzufragen.
 
 ## Funktionen
-- Benutzerregistrierung und Login mit Validierung (noch in Bearbeitung)
-- Hinzufügen und Entfernen von Fahrzeugen (noch in Planung)
-- Admin-Bereich zur Verwaltung (noch in Planung)
+- Benutzerregistrierung und Login
+- Hinzufügen und Entfernen von Fahrzeugen (als eingeloggter Nutzer)
+- Fahrzeuge anfragen per Telefon oder Email
 
 ## Voraussetzungen
 - XAMPP 8.2.4
 - PHP
 - MySQL
+- Composer
 
 ## Root Verzeichnis
-
 Damit die Startseite direkt unter der Top-Level Domain aufrufbar ist,
 muss das Document Root auf der httpd.conf Datei angepasst werden. 
-
 Füge diesen Pfad am Ende hinzu /Elega/public
+--> `DocumentRoot /Applications/XAMPP/xamppfiles/htdocs/Elega/public`
 
---> DocumentRoot "/Applications/XAMPP/xamppfiles/htdocs/***Elega/public***" 
+## Composer
+Damit die Anwendung funktioniert, muss der Befehl `composer install` 
+ausgeführt werden, um die benötigten Dependencies aus der composer.json
+zu installieren.
+
+## Starten der Applikation
+Nachdem die Dependencies installiert wurden, starte die Server in XAMPP
+und rufe die URL: http://localhost/ auf.
 
 

@@ -1,12 +1,10 @@
 <?php 
-
+require __DIR__ . '/../vendor/autoload.php';
 require '../src/helpers.php';
 
 errorReporting();
 
-require basePath('src/Framework/Router.php');
-
-require basePath('src/Framework/Database.php');
+use Framework\Router;
 
 $router = new Router();
 
