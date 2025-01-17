@@ -1,6 +1,6 @@
-<?php require('../src/utils/validation.php') ?> 
-<?php require('../src/templates/head.php') ?>
-<?php require('../src/templates/navbar.php') ?>
+<?php require(basePath('src/utils/validation.php')) ?> 
+<?php require(basePath('src/templates/head.php')) ?>
+<?php require(basePath('src/templates/navbar.php')) ?>
     <main>
         <section class="login-section">
             <div class="login-wrapper">
@@ -41,4 +41,4 @@
             <div class="gradient"></div>
         </section>
     </main>
-    <?php require('../src/templates/footer.php') ?>
+    <?php require(basePath('src/templates/footer.php')) ?>
