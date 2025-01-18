@@ -1,13 +1,22 @@
 <?php
 
+namespace App\Controllers;
+
 use Framework\Database;
 
-$config = require basePath('config.php');
+class HomeController {
 
-$db = new Database($config);
+    protected $db;
 
-$cars = $db->query("SELECT * FROM cars")->fetchAll();
+    public function __construct() {
+        $config = require basePath('config.php');
+        $this->db = new Database($config);
+    }
 
-loadView("home", [
-    'cars' => $cars
-]);
+    public function index() {
+        $cars = $this->db->query("SELECT * FROM cars")->fetchAll();
+        loadView("home", [
+            'cars' => $cars
+        ]);
+    }
+}
