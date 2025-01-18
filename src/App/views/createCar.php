@@ -10,12 +10,12 @@
     "Maserati", "Mazda", "McLaren", "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan",
     "Opel", "Pagani", "Peugeot", "Porsche", "Ram", "Renault", "Rolls-Royce",
     "Saab", "Seat", "Skoda", "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen",
-    "Volvo"]
+    "Volvo"];
 
 ?>
 
 <section class="create-section container">
-    <h1>Inserat erstellen</h1>
+    <h1>Inserat erstellen</h1>  
     <div class="create-form-wrapper">
         <form class="create-form" action="/fahrzeuge" method="POST">
             <div class="create-input-wrapper">
@@ -28,33 +28,40 @@
             </div>
             <div class="create-input-wrapper">
                 <label for="model">Fahrzeugmodell: </label>
-                <input type="text" name="model">
+                <input type="text" name="model" value="<?= $data['model'] ?? ''; ?>">
             </div>
             <div class="create-input-wrapper">
                 <label for="description">Beschreibung: </label>
-                <textarea type="text" rows="10" name="description"></textarea>
+                <textarea type="text" rows="10" name="description"><?= $data['description'] ?? ''; ?></textarea>
             </div>
             <div class="create-input-wrapper">
                 <label for="mileage">Kilometerstand: </label>
-                <input type="text" name="mileage">
+                <input type="text" value="<?= $data['mileage'] ?? ''; ?>" name="mileage">
             </div>
             <div class="create-input-wrapper">
                 <label for="year">Erstzulassung: </label>
-                <input type="text" name="year">
+                <input type="text" value="<?= $data['year'] ?? ''; ?>" name="year">
             </div>
             <div class="create-input-wrapper">
                 <label for="horsepower">Leistung(in PS): </label>
-                <input type="text" name="horsepower">
+                <input type="text" value="<?= $data['horsepower'] ?? ''; ?>" name="horsepower">
             </div>
             <div class="create-input-wrapper">
                 <label for="price">Preis (in €): </label>
-                <input type="text" name="price">
+                <input type="text" value="<?= $data['price'] ?? ''; ?>" name="price">
             </div>
             <div class="create-input-wrapper">
                 <input class="btn" type="submit" value="Absenden" name="send">
             </div>
         </form>
     </div>
+    <?php if(isset($errors)) { ?>
+    <ul class="errors">
+        <?php foreach ($errors as $error) { ?>
+            <li><?= $error ?></li>
+        <?php } ?>
+    </ul> 
+    <?php }; ?>
 </section>
 
 <?php require(basePath('src/App/templates/footer.php')) ?>

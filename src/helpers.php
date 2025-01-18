@@ -46,3 +46,7 @@ function shortenText($text, $wordCount) {
     
     return $shortendText;
 }
+
+function sanitize(string $string): string {
+    return htmlspecialchars($string);
+}

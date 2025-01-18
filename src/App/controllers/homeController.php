@@ -14,9 +14,11 @@ class HomeController {
     }
 
     public function index() {
-        $cars = $this->db->query("SELECT * FROM cars")->fetchAll();
+        $cars = $this->db->query("SELECT * FROM cars LIMIT 3")->fetchAll();
+        $users = $this->db->query("SELECT * FROM users")->fetchAll();
         loadView("home", [
-            'cars' => $cars
+            'cars' => $cars,
+            'users' => $users
         ]);
     }
 }

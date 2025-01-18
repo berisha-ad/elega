@@ -2,6 +2,7 @@
 
 $router->get('/', 'HomeController@index');
 $router->get('/fahrzeuge', 'CarController@index');
-$router->get('/inserieren', 'CarController@create');
-//$router->get('/register', 'registerController.php');
-//$router->get('/login', 'loginController.php');
+$router->get('/neues-inserat', 'CarController@create');
+$router->post('/fahrzeuge', 'CarController@store');
+//$router->get('/registrieren', 'registerController.php');
+//$router->get('/anmelden', 'loginController.php');

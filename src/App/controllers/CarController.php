@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Framework\Database;
+use Framework\Validation;
 
 class CarController {
 
@@ -13,15 +14,67 @@ class CarController {
         $this->db = new Database($config);
     }
 
-    public function index() {
+    public function index() : void {
         $cars = $this->db->query("SELECT * FROM cars")->fetchAll();
+        $users = $this->db->query("SELECT * FROM users")->fetchAll();
         loadView("cars", [
-            'cars' => $cars
+            'cars' => $cars,
+            'users' => $users
         ]);
     }
 
-    public function create() {
+    public function create() : void {
         $cars = $this->db->query("SELECT * FROM cars")->fetchAll();
         loadView("createCar", []);
+    }
+
+    public function store() : void {
+        $allowedFields = [
+            "brand", "model", "description", "mileage", "year", "horsepower", "price"
+        ];
+        $data = array_intersect_key($_POST, array_flip($allowedFields));
+
+        $data['user_id'] = 4;
+
+        $data = array_map('sanitize', $data);
+
+        $requiredFields = ['brand', 'model', 'description', 'mileage', 'year', 'horsepower', 'price'];
+
+        $errors = [];
+
+        foreach($requiredFields as $field){
+            if(empty($data[$field]) || !Validation::string($data[$field], 2, 255)) {
+                $errors[$field] = ucfirst($field) . " muss ausgefüllt werden!";
+            }
+        }
+        if(!empty($errors)) {
+            loadView('createCar', [
+                'errors' => $errors,
+                'data' => $data,
+            ]);
+        } else {
+
+            $fields = [];
+            
+            foreach($data as $field => $value) {
+                $fields[] = $field;
+            }
+
+            $fields = implode(', ', $fields);
+
+            $values = [];
+
+            foreach($data as $field => $value) {
+                $values[] = ':' . $field;
+            }
+
+            $values = implode(', ', $values);
+
+            $query = "INSERT INTO cars ({$fields}) VALUES ({$values})";
+
+            $this->db->query($query, $data);
+
+            header('Location: /fahrzeuge');
+        }
     }
 }

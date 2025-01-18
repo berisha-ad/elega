@@ -23,13 +23,17 @@ class Database {
         }
     }
 
-    public function query(string $query): \PDOStatement {
+    public function query($query, $params = []){
         try {
-            $stm = $this->conn->prepare($query);
-            $stm->execute();
-            return $stm;
+        $sth = $this->conn->prepare($query);
+        foreach ($params as $param => $value) {
+            $sth->bindValue(':' . $param, $value);
+        }
+
+        $sth->execute();
+        return $sth;
         } catch (PDOException $e) {
-            throw new Exception("Query failed to execute: ".$e->getMessage());
-        };
+        throw new Exception("Query failed to execute: {$e->getMessage()}");
+        }
     }
 }
