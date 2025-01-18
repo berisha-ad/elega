@@ -7,7 +7,7 @@
                 <p class="p-l">Finde dein neues Auto jetzt!</p>
                 <div class="btn-wrapper">
                     <a class="btn" href="/register">Jetzt registrieren</a>
-                    <a class="btn" href="">Inserat erstellen</a>
+                    <a class="btn" href="/inserieren">Inserat erstellen</a>
                 </div>
             </div>
             <img class="hero-image" src="./images/jpg/hero-image.jpg" alt="">
