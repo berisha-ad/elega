@@ -51,7 +51,7 @@
                 <input type="text" value="<?= $data['price'] ?? ''; ?>" name="price">
             </div>
             <div class="create-input-wrapper">
-                <input class="btn" type="submit" value="Absenden" name="send">
+                <input class="btn" type="submit" value="Speichern" name="send">
             </div>
         </form>
     </div>

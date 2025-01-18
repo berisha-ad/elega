@@ -126,6 +126,11 @@ p {
     font-weight: 600;
     color: #fff;
     cursor: pointer;
+    display: inline-block;
+}
+
+.max-w-500 {
+    max-width: 500px;
 }
 
 .btn:hover {
@@ -258,6 +263,19 @@ p {
 
 .count-wrapper {
     display: flex;
+    gap: 1rem;
+}
+
+/* SHOW SECTION */
+
+.show-section {
+    padding-block: 10rem;
+} 
+
+.show-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
     gap: 1rem;
 }
 

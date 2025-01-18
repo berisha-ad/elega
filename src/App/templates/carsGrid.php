@@ -1,7 +1,7 @@
 
     <div class="cars-grid">
         <?php foreach ($cars as $car) { ?>
-            <a href="/fahrzeuge/<?= $car['id'] ?>">
+            <a href="/fahrzeug?id=<?= $car['id'] ?>">
                 <div class="car-card border">
                     <img class="car-image border-dark" src="./images/jpg/hero-image.jpg" alt="Titel vom Bild">
                     <h2 class="h3"><?= $car['brand'] ?> <?= $car['model'] ?></h2>

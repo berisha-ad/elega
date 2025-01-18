@@ -77,4 +77,17 @@ class CarController {
             header('Location: /fahrzeuge');
         }
     }
+
+    public function show() : void {
+        $id = $_GET['id'] ?? '';
+        $params = [
+            'id' => $id
+        ];
+        $users = $this->db->query("SELECT * FROM users")->fetchAll();
+        $car = $this->db->query('SELECT * FROM cars WHERE id = :id', $params)->fetch();
+        loadView('show', [
+            'car' => $car,
+            'users' => $users
+        ]);
+    }
 }
