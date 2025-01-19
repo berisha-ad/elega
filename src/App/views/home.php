@@ -9,14 +9,13 @@
         <section class="hero-section">
             <div class="hero-content-wrapper container">
                 <h1>Luxury on tires</h1>
-                <p class="p-l">Finde dein neues Auto jetzt!</p>
-                <div class="btn-wrapper">
                 <?php if(Session::has('user')) { ?>
+                    <p class="p-l">Angemeldet als <?= Session::get('user')['username']; ?></p>
                     <a class="btn" href="/neues-inserat">Inserat erstellen</a>
                 <?php } else { ?>
+                    <p class="p-l">Finde dein neues Auto jetzt!</p>
                     <a class="btn" href="/auth/register">Jetzt registrieren</a>
                 <?php } ?>
-                </div>
             </div>
             <img class="hero-image" src="./images/jpg/hero-image.jpg" alt="">
             <div class="gradient"></div>

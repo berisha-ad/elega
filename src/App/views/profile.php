@@ -7,7 +7,7 @@
     <div class="profile-content">
         <h1>Willkommen, <?= Session::get('user')['username'] ?>!</h1>
         <form action="/auth/logout" method="POST">
-            <input class="btn" type="submit" value="Abmelden">
+            <input class="btn delete" type="submit" value="Abmelden">
         </form>
     </div>
 </section>
