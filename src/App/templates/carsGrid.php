@@ -15,7 +15,7 @@
                                     <p><?= $car['year'] ?></p>
                                     <p><?= $car['horsepower'] ?> PS</p>
                                 </div>
-                                <p>Standort: <?= $user['country'] . ", " . $user['city'] ?></p>
+                                <p>Standort: <?= $user['city'] ?></p>
                             <?php }
                         }
                     ?>

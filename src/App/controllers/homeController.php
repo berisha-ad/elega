@@ -14,7 +14,7 @@ class HomeController {
     }
 
     public function index() {
-        $cars = $this->db->query("SELECT * FROM cars LIMIT 3")->fetchAll();
+        $cars = $this->db->query("SELECT * FROM cars ORDER BY created_at DESC LIMIT 3")->fetchAll();
         $users = $this->db->query("SELECT * FROM users")->fetchAll();
         loadView("home", [
             'cars' => $cars,

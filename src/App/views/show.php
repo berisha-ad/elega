@@ -16,7 +16,7 @@
                     <p><?= $car['year'] ?></p>
                     <p><?= $car['horsepower'] ?> PS</p>
                 </div>
-                <p>Standort: <?= $user['country'] . ", " . $user['city'] ?></p>
+                <p>Standort: <?= $user['city'] ?></p>
         <p class="hl-mid m-t-auto f-w-500">€<?= $car['price'] ?></p>
         <div>
             <a class="btn" href="mailto:<?= $user['email'] ?>">Kontaktieren</a>

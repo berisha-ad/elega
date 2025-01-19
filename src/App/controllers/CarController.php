@@ -34,7 +34,7 @@ class CarController {
         ];
         $data = array_intersect_key($_POST, array_flip($allowedFields));
 
-        $data['user_id'] = 4;
+        $data['user_id'] = 8;
 
         $data = array_map('sanitize', $data);
 

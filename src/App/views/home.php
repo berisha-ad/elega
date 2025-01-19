@@ -7,7 +7,7 @@
                 <h1>Luxury on tires</h1>
                 <p class="p-l">Finde dein neues Auto jetzt!</p>
                 <div class="btn-wrapper">
-                    <a class="btn" href="/registrieren">Jetzt registrieren</a>
+                    <a class="btn" href="/auth/register">Jetzt registrieren</a>
                     <a class="btn" href="/neues-inserat">Inserat erstellen</a>
                 </div>
             </div>

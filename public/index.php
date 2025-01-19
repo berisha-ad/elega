@@ -1,10 +1,13 @@
 <?php 
 require __DIR__ . '/../vendor/autoload.php';
-require '../src/helpers.php';
 
+require '../src/helpers.php';
 errorReporting();
 
 use Framework\Router;
+use Framework\Session;
+
+Session::start();
 
 $router = new Router();
 
