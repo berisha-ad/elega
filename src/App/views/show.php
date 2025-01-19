@@ -19,11 +19,21 @@
                 <p>Standort: <?= $user['city'] ?></p>
         <p class="hl-mid m-t-auto f-w-500">€<?= $car['price'] ?></p>
         <div>
-            <a class="btn" href="mailto:<?= $user['email'] ?>">Kontaktieren</a>
+            <a class="btn" href="mailto:<?= $user['email'] ?>">Verkäufer kontaktieren</a>
         </div>
         <?php }
             }
         ?>
+    </div>
+    <div class="btn-wrapper">
+        <form class="m-t-2" action="/fahrzeug/entfernen" method="POST" >
+            <input type="hidden" name="_method" value="DELETE">
+            <input class="btn delete" type="submit" value="Inserat löschen">
+        </form>
+        <form class="m-t-2" action="/fahrzeug/bearbeiten" method="POST" >
+            <input type="hidden" name="_method" value="PUT">
+            <input class="btn" type="submit" value="Bearbeiten">
+        </form>
     </div>
 </section>
 
