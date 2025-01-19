@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Framework\Database;
 use Framework\Validation;
+use Framework\Session;
 
 class CarController {
 
@@ -34,7 +35,7 @@ class CarController {
         ];
         $data = array_intersect_key($_POST, array_flip($allowedFields));
 
-        $data['user_id'] = 8;
+        $data['user_id'] = Session::get('user')['id'];
 
         $data = array_map('sanitize', $data);
 

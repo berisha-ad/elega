@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Framework\Database;
 use Framework\Validation;
+use Framework\Session;
 
 class UserController {
     protected $db;
@@ -17,8 +18,12 @@ class UserController {
         loadView('register');
     }
 
-    public function authenticate() : void {
+    public function login() : void {
         loadView('login');
+    }
+
+    public function profile(): void {
+        loadView('profile');
     }
 
     public function store():void {
@@ -96,6 +101,69 @@ class UserController {
 
         $this->db->query('INSERT INTO users (username, email, password, city) VALUES (:username, :email, :password, :city)', $params);
         header('Location: /auth/login');
+    }
+
+    public function authenticate() : void {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $errors = [];
+
+        if (!Validation::string($username)) {
+            $errors['username'] = 'Bitte gebe deinen Nutzernamen ein!';
+        }
+
+        if (!Validation::string($password)) {
+            $errors['password'] = 'Bitte gebe dein Passwort ein!';
+        }
+
+        if(!empty($errors)) {
+            loadView('login', [
+                'errors' => $errors
+            ]);
+            exit;
+        }
+
+        $params = [
+            "username" => $username
+        ];
+
+        $user = $this->db->query('SELECT * FROM users WHERE username = :username', $params)->fetch();
+
+        if(!$user) {
+            $errors['username'] = "Falsche Anmeldedaten!";
+        }
+
+        if(!empty($errors)) {
+            loadView('login', [
+                'errors' => $errors
+            ]);
+            exit;
+        }
+
+        if (!Validation::match(hash('sha256', $password), $user['password'])) {
+            $errors['password'] = "Falsche Anmeldedaten!";
+        }
+
+        if(!empty($errors)) {
+            loadView('login', [
+                'errors' => $errors
+            ]);
+            exit;
+        }
+
+        Session::set('user', [
+            'id' => $user['id'],
+            'username' => $user['username'],
+            'city' => $user['city']
+        ]);
+
+        header('Location: /');
+    }
+
+    public function logout() : void {
+        Session::clearAll();
+        header('Location: /');
     }
 
 }

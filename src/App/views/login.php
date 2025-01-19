@@ -4,9 +4,16 @@
         <section class="login-section">
             <div class="login-wrapper border">
                 <h1 class="hl-mid">Anmelden</h1>
-                <form class="login-form" action="" method="post">
-                    <input type="email" placeholder="E-Mail-Adresse" required>
-                    <input type="password" placeholder="Passwort" required>
+                <?php if (isset($errors)) { ?>
+                    <ul>
+                        <?php foreach($errors as $error) { ?>
+                            <li><?= $error ?></li>
+                        <?php } ?>
+                    </ul>
+                <?php } ?>
+                <form class="login-form" action="/auth/login" method="POST" novalidate>
+                    <input type="text" name="username" placeholder="Nutzername" required>
+                    <input type="password" name="password" placeholder="Passwort" required>
                     <input class="btn" type="submit" value="Anmelden">
                     <p>Noch kein Konto? <a href="/auth/register">Konto erstellen</a></p>
                 </form>
