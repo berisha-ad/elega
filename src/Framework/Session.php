@@ -2,7 +2,7 @@
 
 namespace Framework;
 
-class Session {
+abstract class Session { //abstract
 
 
     public static function start() : void {

@@ -26,7 +26,7 @@ class UserController {
         loadView('profile');
     }
 
-    public function store():void {
+    public function store() : void {
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
