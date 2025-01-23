@@ -1,35 +1,35 @@
 
 
-# Beschreibung:
-Elega ist eine Marktplatz in der Nutzer die Möglichkeit haben,
-nach ihrer Registrierung ihr Fahrzeug zu inserieren. Außerdem
-ist es in der Anwendung möglich, Fahrzeuge direkt beim Nutzer,
-der es veröffentlicht hat, anzufragen.
+# Description:
+Elega is a marketplace where users have the opportunity to 
+list their vehicle after registering. Additionally, within 
+the application, it is possible to directly inquire about 
+vehicles from the user who posted it.
 
-## Funktionen
-- Benutzerregistrierung und Login
-- Hinzufügen und Entfernen von Fahrzeugen (als eingeloggter Nutzer)
-- Fahrzeuge anfragen per Telefon oder Email
+## Features
+- User registration and login
+- Add and remove vehicles (as a logged-in user)
+- Inquire about vehicles via phone or email
 
-## Voraussetzungen
+## Requirements
 - XAMPP 8.2.4
 - PHP
 - MySQL
 - Composer
 
-## Root Verzeichnis
-Damit die Startseite direkt unter der Top-Level Domain aufrufbar ist,
-muss das Document Root auf der httpd.conf Datei angepasst werden. 
-Füge diesen Pfad am Ende hinzu /elega/public
+## Root Directory
+In order for the homepage to be accessible directly under the 
+top-level domain, the Document Root must be adjusted in the 
+httpd.conf file.  
+Add this path at the end: /elega/public  
 --> `DocumentRoot /Applications/XAMPP/xamppfiles/htdocs/elega/public`
 
 ## Composer
-Damit die Anwendung funktioniert, muss der Befehl `composer install` 
-ausgeführt werden, um die benötigten Dependencies aus der composer.json
-zu installieren.
+For the application to work, the command `composer install` must be 
+executed to install the necessary dependencies from the composer.json file.
 
-## Starten der Applikation
-Nachdem die Dependencies installiert wurden, starte die Server in XAMPP
-und rufe die URL: http://localhost/ auf.
+## Starting the Application
+After the dependencies have been installed, start the server 
+in XAMPP and visit the URL: http://localhost/.
 
 
