@@ -9,7 +9,7 @@ class Validation {
         if(is_string($value)){
             $value = trim($value);
             $length = strlen($value);
-            return $length >= $min ?? $length <= $max;
+            return $length >= $min && $length <= $max;
         }
         return false;
         

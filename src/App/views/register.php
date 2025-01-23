@@ -3,9 +3,21 @@
 
 <?php  
 $cities = [
-    'Wien', 'Graz', 'Salzburg', 'Innsbruck', 'Eisenstadt', 
-    'Berlin', 'Köln', 'Hamburg', 'Düsseldorf',
-    'Basel', 'Zürich', 'Bern', 'Genf'
+    // Alle großen Städte in Österreich
+    "Wien", "Graz", "Linz", "Salzburg", "Innsbruck", "Klagenfurt", "Villach", "Wels",
+    "Sankt Pölten", "Dornbirn", "Steyr",
+
+    // Alle großen Städte in Deutschland
+    "Berlin", "Hamburg", "München", "Köln", "Frankfurt am Main", "Stuttgart", "Düsseldorf",
+    "Leipzig", "Dortmund", "Essen", "Bremen", "Dresden", "Hannover", "Nürnberg",
+    "Duisburg", "Bochum", "Wuppertal", "Bielefeld", "Bonn", "Münster", "Karlsruhe",
+    "Mannheim", "Augsburg", "Wiesbaden", "Gelsenkirchen", "Mönchengladbach", "Braunschweig", "Chemnitz",
+    "Kiel", "Aachen", "Halle (Saale)", "Magdeburg", "Freiburg im Breisgau", "Krefeld", "Lübeck",
+    "Oberhausen", "Erfurt", "Mainz", "Rostock", "Kassel", "Hagen", "Saarbrücken",
+
+    // Alle großen Städte in der Schweiz
+    "Zürich", "Genf", "Basel", "Lausanne", "Bern", "Winterthur", "Luzern",
+    "St. Gallen", "Lugano", "Biel/Bienne", "Thun", "Köniz", "La Chaux-de-Fonds", "Schaffhausen"
 ];
 ?>
     <main>

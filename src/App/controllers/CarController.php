@@ -30,24 +30,52 @@ class CarController {
     }
 
     public function store() : void {
-        $allowedFields = [
-            "brand", "model", "description", "mileage", "year", "horsepower", "price"
-        ];
-        $data = array_intersect_key($_POST, array_flip($allowedFields));
 
-        $data['user_id'] = Session::get('user')['id'];
-
-        $data = array_map('sanitize', $data);
-
-        $requiredFields = ['brand', 'model', 'description', 'mileage', 'year', 'horsepower', 'price'];
+        $brand = sanitize($_POST['brand']);
+        $model = sanitize($_POST['model']);
+        $description = sanitize($_POST['description']);
+        $mileage = sanitize($_POST['mileage']);
+        $year = sanitize($_POST['year']);
+        $horsepower = sanitize($_POST['horsepower']);
+        $price = sanitize($_POST['price']);
+        $user_id = Session::get('user')['id'];
 
         $errors = [];
 
-        foreach($requiredFields as $field){
-            if(empty($data[$field]) || !Validation::string($data[$field], 2, 255)) {
-                $errors[$field] = ucfirst($field) . " muss ausgefüllt werden!";
-            }
+        if(!Validation::string($brand)) {
+            $errors['brand'] = 'Wähle eine Automarke aus!';
         }
+        if(!Validation::string($model, 2)) {
+            $errors['model'] = 'Gib ein Fahrzeugmodell an!';
+        }
+        if(!Validation::string($description, 5)) {
+            $errors['description'] = 'Gib eine Beschreibung an!';
+        }
+        if(!Validation::string($mileage, 1, 9)) {
+            $errors['mileage'] = 'Gib einen gültigen Kilometerstand an! (z.B. "19000")';
+        }
+        if(!Validation::string($year, 4,4)) {
+            $errors['year'] = 'Gib eine gültige Erstzulassung an! (z.B. "2015")';
+        }
+        if(!Validation::string($horsepower, 2, 4)) {
+            $errors['horsepower'] = 'Gib eine gültige Pferdestärke an! (z.B. "204")';
+        }
+        if(!Validation::string($price, 2, 8)) {
+            $errors['price'] = 'Gib einen gültigen Preis an! (z.B. "25000")';
+        }
+
+        $data = [
+            'user_id' => $user_id,
+            'brand' => $brand,
+            'model' => $model,
+            'description' => $description,
+            'mileage' => $mileage,
+            'year' => $year,
+            'horsepower' => $horsepower,
+            'price' => $price
+        ];
+
+
         if(!empty($errors)) {
             loadView('createCar', [
                 'errors' => $errors,
@@ -55,23 +83,7 @@ class CarController {
             ]);
         } else {
 
-            $fields = [];
-            
-            foreach($data as $field => $value) {
-                $fields[] = $field;
-            }
-
-            $fields = implode(', ', $fields);
-
-            $values = [];
-
-            foreach($data as $field => $value) {
-                $values[] = ':' . $field;
-            }
-
-            $values = implode(', ', $values);
-
-            $query = "INSERT INTO cars ({$fields}) VALUES ({$values})";
+            $query = "INSERT INTO cars (user_id, brand, model, description, mileage, year, horsepower, price) VALUES (:user_id, :brand, :model, :description, :mileage, :year, :horsepower, :price)";
 
             $this->db->query($query, $data);
 

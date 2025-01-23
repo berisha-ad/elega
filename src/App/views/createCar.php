@@ -12,12 +12,17 @@
     "Saab", "Seat", "Skoda", "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen",
     "Volvo"];
 
+    $startYear = 1960;
+    $currentYear = date("Y");
+
+    $years = range($currentYear, $startYear);
+
 ?>
 
 <section class="create-section container">
     <h1>Inserat erstellen</h1>  
     <div class="create-form-wrapper">
-        <form class="create-form" action="/fahrzeuge" method="POST">
+        <form class="create-form" action="/fahrzeuge" method="POST" enctype="multipart/form-data">
             <div class="create-input-wrapper">
                 <label for="brand">Automarke: </label>
                 <select name="brand" id="brand">
@@ -25,6 +30,10 @@
                         <option value="<?= $brand ?>"><?= $brand ?></option>
                     <?php } ?>
                 </select>
+            </div>
+            <div class="create-input-wrapper">
+                <label for="image">Bilder hochladen</label>
+                <input type="file" name="image">
             </div>
             <div class="create-input-wrapper">
                 <label for="model">Fahrzeugmodell: </label>
@@ -40,7 +49,11 @@
             </div>
             <div class="create-input-wrapper">
                 <label for="year">Erstzulassung: </label>
-                <input type="number" value="<?= $data['year'] ?? ''; ?>" name="year">
+                <select name="year" id="year">
+                    <?php foreach($years as $year) { ?>
+                        <option value="<?= $year ?>"><?= $year ?></option>
+                    <?php } ?>
+                </select>
             </div>
             <div class="create-input-wrapper">
                 <label for="horsepower">Leistung(in PS): </label>
