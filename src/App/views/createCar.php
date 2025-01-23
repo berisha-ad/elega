@@ -36,19 +36,19 @@
             </div>
             <div class="create-input-wrapper">
                 <label for="mileage">Kilometerstand: </label>
-                <input type="text" value="<?= $data['mileage'] ?? ''; ?>" name="mileage">
+                <input type="number" value="<?= $data['mileage'] ?? ''; ?>" name="mileage">
             </div>
             <div class="create-input-wrapper">
                 <label for="year">Erstzulassung: </label>
-                <input type="text" value="<?= $data['year'] ?? ''; ?>" name="year">
+                <input type="number" value="<?= $data['year'] ?? ''; ?>" name="year">
             </div>
             <div class="create-input-wrapper">
                 <label for="horsepower">Leistung(in PS): </label>
-                <input type="text" value="<?= $data['horsepower'] ?? ''; ?>" name="horsepower">
+                <input type="number" value="<?= $data['horsepower'] ?? ''; ?>" name="horsepower">
             </div>
             <div class="create-input-wrapper">
                 <label for="price">Preis (in €): </label>
-                <input type="text" value="<?= $data['price'] ?? ''; ?>" name="price">
+                <input type="number" value="<?= $data['price'] ?? ''; ?>" name="price">
             </div>
             <div class="create-input-wrapper">
                 <input class="btn" type="submit" value="Speichern" name="send">

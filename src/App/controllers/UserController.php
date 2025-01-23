@@ -27,11 +27,11 @@ class UserController {
     }
 
     public function store() : void {
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $confirm = $_POST['confirm'];
-        $city = $_POST['city'];
+        $username = sanitize($_POST['username']);
+        $email = sanitize($_POST['email']);
+        $password = sanitize($_POST['password']);
+        $confirm = sanitize($_POST['confirm']);
+        $city = sanitize($_POST['city']);
         if (isset($_POST['rights'])) {
             $rights = $_POST['rights'];
         } else {

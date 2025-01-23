@@ -58,4 +58,8 @@ class Validation {
         }
         return true;
     }
+
+    public static function isInt($value) : bool {
+        return is_int($value);
+    }
 }
