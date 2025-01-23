@@ -75,6 +75,26 @@ class CarController {
             'price' => $price
         ];
 
+        if(!empty($errors)) {
+            loadView('createCar', [
+                'errors' => $errors,
+                'data' => $data,
+            ]);
+            exit;
+        }
+
+        if(!empty($_FILES['image']['name'])) {
+            $file_name = $_FILES['image']['name'];
+            $file_size = $_FILES['image']['size'];
+            $file_tmp = $_FILES['image']['tmp_name'];
+            $target_dir = basePath("public/uploads/{$file_name}");
+            move_uploaded_file($file_tmp, $target_dir);
+
+            $data['medialink'] = "./uploads/{$file_name}";
+        } else {
+            $errors['file'] = 'Lade ein Bild hoch!';
+        }
+
 
         if(!empty($errors)) {
             loadView('createCar', [
@@ -83,7 +103,8 @@ class CarController {
             ]);
         } else {
 
-            $query = "INSERT INTO cars (user_id, brand, model, description, mileage, year, horsepower, price) VALUES (:user_id, :brand, :model, :description, :mileage, :year, :horsepower, :price)";
+
+            $query = "INSERT INTO cars (medialink, user_id, brand, model, description, mileage, year, horsepower, price) VALUES (:medialink, :user_id, :brand, :model, :description, :mileage, :year, :horsepower, :price)";
 
             $this->db->query($query, $data);
 

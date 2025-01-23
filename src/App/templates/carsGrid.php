@@ -3,7 +3,7 @@
         <?php foreach ($cars as $car) { ?>
             <a href="/fahrzeug?id=<?= $car['id'] ?>">
                 <div class="car-card border">
-                    <img class="car-image border-dark" src="./images/jpg/hero-image.jpg" alt="Titel vom Bild">
+                    <img class="car-image border-dark" src="<?= $car['medialink'] ?>" alt="<?= $car['brand'] ?> <?= $car['model'] ?>">
                     <h2 class="h3"><?= $car['brand'] ?> <?= $car['model'] ?></h2>
                     <p><?= shortenText($car['description'], 10) ?></p>
                     <?php $id = $car['user_id'];
