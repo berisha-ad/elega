@@ -22,18 +22,6 @@ function errorReporting() {
     error_reporting(E_ALL);
 }
 
-function loadView($view, $data = []) {
-
-    $viewPath = basePath("src/App/views/{$view}.php");
-    if (file_exists($viewPath)) {
-        extract($data);
-        require $viewPath;
-    } else {
-        echo "{$view} not Found!";
-    }
-    
-}
-
 function shortenText($text, $wordCount) {
 
     $words = explode(' ', $text);
