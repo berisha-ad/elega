@@ -3,20 +3,15 @@
 namespace App\Controllers;
 
 use Framework\Database;
+use App\Models\UserModel;
+use App\Models\CarModel;
 
-class HomeController {
-
-    protected $db;
-
-    public function __construct() {
-        $config = require basePath('config.php');
-        $this->db = new Database($config);
-    }
+class HomeController extends Controller {
 
     public function index() {
-        $cars = $this->db->query("SELECT * FROM cars ORDER BY created_at DESC LIMIT 3")->fetchAll();
-        $users = $this->db->query("SELECT * FROM users")->fetchAll();
-        loadView("home", [
+        $cars = CarModel::index();
+        $users = UserModel::getAllUsers();
+        $this->loadView("home", [
             'cars' => $cars,
             'users' => $users
         ]);

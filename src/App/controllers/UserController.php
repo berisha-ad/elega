@@ -5,35 +5,32 @@ namespace App\Controllers;
 use Framework\Database;
 use Framework\Validation;
 use Framework\Session;
+use App\Models\UserModel;
 
-class UserController {
-    protected $db;
-
-    public function __construct () {
-        $config = require basePath('config.php');
-        $this->db = new Database($config);
-    }
+class UserController extends Controller {
 
     public function create() : void {
-        loadView('register');
+        $this->loadView('register');
     }
 
     public function login() : void {
-        loadView('login');
+        $this->loadView('login');
     }
 
     public function profile(): void {
-        loadView('profile');
+        $this->loadView('profile');
     }
 
     public function store() : void {
+
+
         $username = sanitize($_POST['username']);
         $email = sanitize($_POST['email']);
         $password = sanitize($_POST['password']);
-        $confirm = sanitize($_POST['confirm']);
+        $confirm = sanitize($_POST['confirm']); //Namesänderrung
         $city = sanitize($_POST['city']);
         if (isset($_POST['rights'])) {
-            $rights = $_POST['rights'];
+            $rights = $_POST['rights'];   //Namesänderrung
         } else {
             $rights = "notconfirmed";
         }
@@ -62,7 +59,7 @@ class UserController {
         }
         
         if (!empty($errors)) {
-            loadView('register', [
+            $this->loadView('register', [
                 'errors' => $errors,
                 'user' => [
                     'username' => $username,
@@ -72,16 +69,11 @@ class UserController {
                 exit;
         }
 
-        $params = [
-            'username' => $username,
-            'email' => $email
-        ];
-    
-        $userExists = $this->db->query('SELECT * FROM users WHERE username = :username OR email = :email', $params)->fetch();
+        $userExists = Usermodel::userExists($username, $email);
     
         if($userExists) {
             $errors['user'] = 'Nutzername oder Email existiert bereits!';
-            loadView('register', [
+            $this->loadView('register', [
                 'errors' => $errors,
                 'user' => [
                     'username' => $username,
@@ -92,14 +84,8 @@ class UserController {
         }
 
 
-        $params = [
-            'username' => $username,
-            'email' => $email,
-            'password' => hash('sha256', $password),
-            'city' => $city
-        ];
+        UserModel::create( $username, $email, $password, $city );
 
-        $this->db->query('INSERT INTO users (username, email, password, city) VALUES (:username, :email, :password, :city)', $params);
         header('Location: /auth/login');
     }
 
@@ -118,24 +104,20 @@ class UserController {
         }
 
         if(!empty($errors)) {
-            loadView('login', [
+            $this->loadView('login', [
                 'errors' => $errors
             ]);
             exit;
         }
 
-        $params = [
-            "username" => $username
-        ];
-
-        $user = $this->db->query('SELECT * FROM users WHERE username = :username', $params)->fetch();
+        $user = UserModel::getUser($username);
 
         if(!$user) {
             $errors['username'] = "Falsche Anmeldedaten!";
         }
 
         if(!empty($errors)) {
-            loadView('login', [
+            $this->loadView('login', [
                 'errors' => $errors
             ]);
             exit;
@@ -146,7 +128,7 @@ class UserController {
         }
 
         if(!empty($errors)) {
-            loadView('login', [
+            $this->loadView('login', [
                 'errors' => $errors
             ]);
             exit;

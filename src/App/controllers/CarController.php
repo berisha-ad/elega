@@ -5,28 +5,23 @@ namespace App\Controllers;
 use Framework\Database;
 use Framework\Validation;
 use Framework\Session;
+use App\Models\CarModel;
+use App\Models\UserModel;
 
-class CarController {
-
-    protected $db;
-
-    public function __construct() {
-        $config = require basePath('config.php');
-        $this->db = new Database($config);
-    }
+class CarController extends Controller {
 
     public function index() : void {
-        $cars = $this->db->query("SELECT * FROM cars")->fetchAll();
-        $users = $this->db->query("SELECT * FROM users")->fetchAll();
-        loadView("cars", [
+        $cars = CarModel::getAllCars();
+        $users = UserModel::getAllUsers();
+        $this->loadView("cars", [
             'cars' => $cars,
             'users' => $users
         ]);
     }
 
     public function create() : void {
-        $cars = $this->db->query("SELECT * FROM cars")->fetchAll();
-        loadView("createCar", []);
+        $cars = CarModel::getAllCars();
+        $this->loadView("createCar", []);
     }
 
     public function store() : void {
@@ -76,7 +71,7 @@ class CarController {
         ];
 
         if(!empty($errors)) {
-            loadView('createCar', [
+            $this->loadView('createCar', [
                 'errors' => $errors,
                 'data' => $data,
             ]);
@@ -97,16 +92,13 @@ class CarController {
 
 
         if(!empty($errors)) {
-            loadView('createCar', [
+            $this->loadView('createCar', [
                 'errors' => $errors,
                 'data' => $data,
             ]);
         } else {
-
-
-            $query = "INSERT INTO cars (medialink, user_id, brand, model, description, mileage, year, horsepower, price) VALUES (:medialink, :user_id, :brand, :model, :description, :mileage, :year, :horsepower, :price)";
-
-            $this->db->query($query, $data);
+            
+            CarModel::createCar($data['medialink'], $user_id, $brand, $model, $description, $mileage, $year, $horsepower, $price);
 
             header('Location: /fahrzeuge');
         }
@@ -114,12 +106,10 @@ class CarController {
 
     public function show() : void {
         $id = $_GET['id'] ?? '';
-        $params = [
-            'id' => $id
-        ];
-        $users = $this->db->query("SELECT * FROM users")->fetchAll();
-        $car = $this->db->query('SELECT * FROM cars WHERE id = :id', $params)->fetch();
-        loadView('show', [
+
+        $users = UserModel::getAllUsers();
+        $car = CarModel::getCar($id);
+        $this->loadView('show', [
             'car' => $car,
             'users' => $users
         ]);
