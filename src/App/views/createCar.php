@@ -22,18 +22,25 @@
 <section class="create-section container">
     <h1>Inserat erstellen</h1>  
     <div class="create-form-wrapper">
-        <form class="create-form" action="/fahrzeuge" method="POST" enctype="multipart/form-data">
+        <form class="create-form" action="/fahrzeug/erstellen" method="POST" enctype="multipart/form-data">
             <div class="create-input-wrapper">
                 <label for="brand">Automarke: </label>
                 <select name="brand" id="brand">
                     <?php foreach($brands as $brand) { ?>
                         <option value="<?= $brand ?>"><?= $brand ?></option>
                     <?php } ?>
+                    <option value="<?= $data['brand'] ?? ''; ?>" selected><?= $data['brand'] ?? ''; ?></option>
                 </select>
             </div>
             <div class="create-input-wrapper">
                 <label for="image">Bilder hochladen</label>
                 <input type="file" name="image">
+                <?php if(isset($medialink)) { ?>
+                <img src="../<?= htmlspecialchars($medialink) ?>" alt="Vorschau" style="max-width: 200px;">
+                <input type="hidden" name="existing_file" value="<?= htmlspecialchars($medialink) ?>">
+                <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
+                <input type="hidden" name="_method" value="<?= htmlspecialchars($method) ?>">
+                <?php } ?>
             </div>
             <div class="create-input-wrapper">
                 <label for="model">Fahrzeugmodell: </label>
@@ -53,6 +60,7 @@
                     <?php foreach($years as $year) { ?>
                         <option value="<?= $year ?>"><?= $year ?></option>
                     <?php } ?>
+                    <option value="<?= $data['year'] ?? ''; ?>" selected><?= $data['year'] ?? ''; ?></option>
                 </select>
             </div>
             <div class="create-input-wrapper">

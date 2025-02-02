@@ -30,10 +30,12 @@
     <div class="btn-wrapper">
         <form class="m-t-2" action="/fahrzeug/entfernen" method="POST" >
             <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="id" value="<?= $car['id'] ?>">
             <input class="btn delete" type="submit" value="Inserat löschen">
         </form>
         <form class="m-t-2" action="/fahrzeug/bearbeiten" method="POST" >
             <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="id" value="<?= $car['id'] ?>">
             <input class="btn" type="submit" value="Bearbeiten">
         </form>
     </div>

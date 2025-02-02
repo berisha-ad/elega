@@ -13,7 +13,7 @@ abstract class Controller {
     }
 
 
-    protected function loadView($view, $data = []) {
+    public static function loadView($view, $data = []) {
 
         $viewPath = basePath("src/App/views/{$view}.php");
         if (file_exists($viewPath)) {

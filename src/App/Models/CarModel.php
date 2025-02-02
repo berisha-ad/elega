@@ -50,4 +50,33 @@ class CarModel extends Model {
 
         return $car;
     }
+
+    public static function deleteCar($id) {
+        $model = new self();
+
+        $delete = $model->db->query('DELETE FROM cars WHERE id = :id', [
+            'id' => $id
+        ]);
+    }
+
+    public static function updateCar($id, $media_link, $brand, $modell, $description, $mileage, $year, $horsepower, $price) {
+        $model = new self();
+
+        $data = [
+            'medialink' => $media_link,
+            'brand' => $brand,
+            'model' => $modell,
+            'description' => $description,
+            'mileage' => $mileage,
+            'year' => $year,
+            'horsepower' => $horsepower,
+            'price' => $price,
+            'id' => $id
+        ];
+
+        $query = "UPDATE cars SET medialink = :medialink, brand = :brand, model = :model, description = :description,
+        mileage = :mileage, year = :year, horsepower = :horsepower, price = :price WHERE id = :id";
+
+        $model->db->query($query, $data);
+    }
 }

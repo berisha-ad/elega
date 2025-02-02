@@ -34,6 +34,8 @@ class CarController extends Controller {
         $horsepower = sanitize($_POST['horsepower']);
         $price = sanitize($_POST['price']);
         $user_id = Session::get('user')['id'];
+        $method = $_POST['_method'];
+        $id = $_POST['id'];
 
         $errors = [];
 
@@ -78,7 +80,7 @@ class CarController extends Controller {
             exit;
         }
 
-        if(!empty($_FILES['image']['name'])) {
+        if(!empty($_FILES['image']['name']) ) {
             $file_name = $_FILES['image']['name'];
             $file_size = $_FILES['image']['size'];
             $file_tmp = $_FILES['image']['tmp_name'];
@@ -86,6 +88,8 @@ class CarController extends Controller {
             move_uploaded_file($file_tmp, $target_dir);
 
             $data['medialink'] = "./uploads/{$file_name}";
+        } else if (isset($_POST['existing_file'])) {
+            $data['medialink'] = $_POST['existing_file'];
         } else {
             $errors['file'] = 'Lade ein Bild hoch!';
         }
@@ -97,9 +101,11 @@ class CarController extends Controller {
                 'data' => $data,
             ]);
         } else {
-            
-            CarModel::createCar($data['medialink'], $user_id, $brand, $model, $description, $mileage, $year, $horsepower, $price);
-
+            if(isset($method) && $method === 'PUT') {
+                Carmodel::updateCar($id, $data['medialink'], $brand, $model, $description, $mileage, $year, $horsepower, $price);
+            } else {
+                CarModel::createCar($data['medialink'], $user_id, $brand, $model, $description, $mileage, $year, $horsepower, $price);
+            }
             header('Location: /fahrzeuge');
         }
     }
@@ -113,5 +119,35 @@ class CarController extends Controller {
             'car' => $car,
             'users' => $users
         ]);
+    }
+
+    public function delete() {
+        $method = $_POST['_method'];
+        $id = $_POST['id'];
+        if($method === 'DELETE') {
+            CarModel::deleteCar($id);
+            header('Location: /fahrzeuge');
+        }
+    }
+
+    public function edit() {
+        $method = $_POST['_method'];
+        $id = $_POST['id'];
+        if($method === 'PUT') {
+            $car = CarModel::getCar($id);
+            $this->loadView('createCar', [
+                'id' => $car['id'],
+                'user_id' => $car['user_id'],
+                'medialink' => $car['medialink'],
+                'brand' => $car['brand'],
+                'model' => $car['model'],
+                'description' => $car['description'],
+                'mileage' => $car['mileage'],
+                'year' => $car['year'],
+                'horsepower' => $car['horsepower'],
+                'price' => $car['price'],
+                'method' => $method
+            ]);
+        }
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Framework;
 
+use App\Controllers\Controller;
+
 class Router {
     protected $routes = [];
 
@@ -42,7 +44,7 @@ class Router {
             }
         }
         http_response_code(404);
-        loadView("404");
+        Controller::loadView("404");
         exit;
     }
 }
