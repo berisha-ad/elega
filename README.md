@@ -12,24 +12,16 @@ vehicles from the user who posted it.
 - Inquire about vehicles via phone or email
 
 ## Requirements
-- XAMPP 8.2.4
+- Docker
 - PHP
 - MySQL
 - Composer
 
-## Root Directory
-In order for the homepage to be accessible directly under the 
-top-level domain, the Document Root must be adjusted in the 
-httpd.conf file.  
-Add this path at the end: /elega/public  
---> `DocumentRoot /Applications/XAMPP/xamppfiles/htdocs/elega/public`
-
-## Composer
-For the application to work, the command `composer install` must be 
-executed to install the necessary dependencies from the composer.json file.
+## Build Dev-Environment with docker
+navigate to the project folder by running
+the following command `cd elega`
+then run `docker compose up --force-recreate`
 
 ## Starting the Application
-After the dependencies have been installed, start the server 
-in XAMPP and visit the URL: http://localhost/.
-
+Call this URL in your web browser: http://localhost:8080
 

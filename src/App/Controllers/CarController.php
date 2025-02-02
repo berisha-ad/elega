@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Framework\Database;
 use Framework\Validation;
 use Framework\Session;
+use Framework\Uploader;
 use App\Models\CarModel;
 use App\Models\UserModel;
 
@@ -37,6 +38,10 @@ class CarController extends Controller {
         if (isset($_POST['_method'])) {
             $method = $_POST['_method'];
             $id = $_POST['id'];
+        }
+        # Wenn das Inserat nur geupdatet wird 
+        if (isset($_POST['existing_file'])) {
+            $medialink = $_POST['existing_file'];
         }
         
 
@@ -77,7 +82,8 @@ class CarController extends Controller {
             'mileage' => $mileage,
             'year' => $year,
             'horsepower' => $horsepower,
-            'price' => $price
+            'price' => $price,
+            'medialink' => $medialink ?? ''
         ];
 
         if(!empty($errors)) {
@@ -88,18 +94,16 @@ class CarController extends Controller {
             exit;
         }
 
-        if(!empty($_FILES['image']['name']) ) {
-            $file_name = $_FILES['image']['name'];
-            $file_size = $_FILES['image']['size'];
-            $file_tmp = $_FILES['image']['tmp_name'];
-            $target_dir = basePath("public/uploads/{$file_name}");
-            move_uploaded_file($file_tmp, $target_dir);
-
-            $data['medialink'] = "./uploads/{$file_name}";
-        } else if (isset($_POST['existing_file'])) {
-            $data['medialink'] = $_POST['existing_file'];
-        } else {
-            $errors['file'] = 'Lade ein Bild hoch!';
+        try {
+            if (!empty($_FILES['image']['name'])) {
+                $data['medialink'] = Uploader::uploadFile($_FILES['image']);
+            } elseif (isset($_POST['existing_file'])) {
+                $data['medialink'] = $_POST['existing_file'];
+            } else {
+                $errors['file'] = 'Lade ein Bild hoch!';
+            }
+        } catch (Exception $e) {
+            $errors['file'] = $e->getMessage();
         }
 
 

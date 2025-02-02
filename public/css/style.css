@@ -33,6 +33,7 @@ body {
     background-color: var(--primary-color);
     font-family: 'inter', sans-serif;
     color: #ccc;
+    min-height: 100vh;
 }
 
 h1 {
