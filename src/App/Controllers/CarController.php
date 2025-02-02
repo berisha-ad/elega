@@ -48,8 +48,13 @@ class CarController extends Controller {
         if(!Validation::string($model, 2)) {
             $errors['model'] = 'Gib ein Fahrzeugmodell an!';
         }
-        if(!Validation::string($description, 5)) {
-            $errors['description'] = 'Gib eine Beschreibung an!';
+        if(!Validation::string($description, 5, 2000)) {
+            if (strlen($description) > 2000) {
+                $errors['description'] = 'Die Beschreibung ist zu lang! maximale Zeichen 2000!';
+            } else {
+                $errors['description'] = 'Gib eine Beschreibung an!';
+            }
+            
         }
         if(!Validation::string($mileage, 1, 9)) {
             $errors['mileage'] = 'Gib einen gültigen Kilometerstand an! (z.B. "19000")';
