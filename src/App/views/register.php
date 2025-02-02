@@ -55,5 +55,6 @@ $cities = [
             <div class="gradient"></div>
         </section>
     </main>
-    <?php require(basePath('src/App/templates/footer.php'))?>
+    </body>
+    </html>
 

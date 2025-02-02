@@ -5,7 +5,7 @@
 }
 
 :root {
-    --primary-color: #1a1a1a;
+    --primary-color: #071714;
     --accent-color: #C3A97C;
     --headline-color: #2E2E2E;
     --text-color: #525252;
@@ -119,6 +119,7 @@ p {
 .btn {
     padding: 1rem 2rem;
     border: 0.05rem solid #ccc;
+    border-radius: 0.4rem;
     transition: all 300ms ease;
     text-decoration: none;
     background-color: #1a1a1a80;
@@ -144,10 +145,6 @@ p {
 
 .border {
     border: 0.05rem solid #ccc;
-}
-
-.border-dark {
-    border: 0.05rem solid #555;
 }
 
 .m-b-3 {
@@ -229,28 +226,31 @@ p {
 .cars-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
+    gap: 1.3rem;
     align-items: center;
     justify-content: center;
 }
 
 .cars-grid a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 .car-card {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding: 1rem;
+    padding: 1.6rem;
     transition: all 300ms ease;
-    cursor: pointer;
     height: 550px;
+    border-radius: 1rem;
+    background-color: #14211d;
 }
 
 .car-image {
     height: 220px;
     object-fit: cover;
+    border-radius: 0.5rem;
 }
 .car-image-big {
     max-height: 400px;
@@ -258,7 +258,8 @@ p {
     object-fit: cover;
 }
 .car-card:hover {
-    background-color: #2a2a2a;
+    background-color: #141113;
+    transform: translateY(9px);
 }
 
 .stats {
@@ -361,6 +362,7 @@ p {
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
+    border-radius: 1rem;
 }
 
 .login-form {
@@ -525,6 +527,11 @@ p {
 @media (max-width: 450px) {
    .car-card {
         height: 500px;
+        padding: 1.3rem;
+   }
+
+   .car-image {
+    width: 100%;
    }
 
    .cars-grid {
