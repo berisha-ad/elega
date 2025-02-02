@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'host' => 'localhost',
+    'host' => 'elega-mysql',
     'port' => 3306,
-    'dbname' => 'elega',
+    'dbname' => 'elega-db',
     'username' => 'elega',
-    'password' => 'elegaDatabase'
+    'password' => 'insecure'
 ];

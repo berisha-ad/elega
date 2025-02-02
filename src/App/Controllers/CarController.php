@@ -34,8 +34,11 @@ class CarController extends Controller {
         $horsepower = sanitize($_POST['horsepower']);
         $price = sanitize($_POST['price']);
         $user_id = Session::get('user')['id'];
-        $method = $_POST['_method'];
-        $id = $_POST['id'];
+        if (isset($_POST['_method'])) {
+            $method = $_POST['_method'];
+            $id = $_POST['id'];
+        }
+        
 
         $errors = [];
 

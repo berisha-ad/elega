@@ -1,0 +1,45 @@
+version: '3'
+services:
+  # PHP service
+  php:
+    container_name: elega-app
+    hostname: elega-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./php.ini:/usr/local/etc/php/conf.d/custom.ini
+    env_file:
+      - .env      
+
+  # MySQL service
+  mysql:
+    container_name: elega-mysql
+    hostname: elega-mysql
+    image: mysql:8.0
+    ports:
+      - "3306:3306"  
+    env_file:
+      - .env
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./migrations/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+
+  # PhpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql
+    env_file:
+      - .env      
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "8081:80"
+
+volumes:
+  mysql_data:
