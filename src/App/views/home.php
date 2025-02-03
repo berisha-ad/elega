@@ -22,7 +22,7 @@
         </section>
 
         <section class="cars-section container">
-            <h2 class="f-w-500 m-b-3">Zuletzt hinzugefügte Fahrzeuge</h2>
+            <h2 class="m-b-3">Kürzlich hochgeladen</h2>
             <?php require(basePath('src/App/templates/carsGrid.php')) ?>
             <a class="btn m-t-2" href="/fahrzeuge">Alle Fahrzeuge</a>
         </section>

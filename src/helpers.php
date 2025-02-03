@@ -38,3 +38,32 @@ function shortenText($text, $wordCount) {
 function sanitize(string $string): string {
     return htmlspecialchars($string);
 }
+
+function formatDate(string $timestamp) {
+    $created_at_date = new DateTime($timestamp);
+    $now = new DateTime();
+
+    $diff = $now->diff($created_at_date);
+
+    if ($diff->y > 0) {
+    echo "vor " . $diff->y . " Jahr(en)";
+    } elseif ($diff->m > 1) {
+    echo "vor " . $diff->m . " Monaten";
+    } elseif ($diff->m > 0) {
+    echo "vor " . $diff->m . " Monat";
+    } elseif ($diff->d > 1) {
+    echo "vor " . $diff->d . " Tagen";
+    } elseif ($diff->d > 0) {
+    echo "vor " . $diff->d . " Tag";
+    } elseif ($diff->h > 1) {
+    echo "vor " . $diff->h . " Stunden";
+    } elseif ($diff->h > 0) {
+    echo "vor " . $diff->h . " Stunde";
+    } elseif ($diff->i > 1) {
+    echo "vor " . $diff->i . " Minuten";
+    } elseif ($diff->i > 0) {
+    echo "vor " . $diff->i . " Minute";
+    } else {
+    echo "gerade eben";
+    }
+}

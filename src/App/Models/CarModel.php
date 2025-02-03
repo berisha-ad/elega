@@ -14,7 +14,17 @@ class CarModel extends Model {
 
     public static function getAllCars() {
         $model = new self();
-        $cars = $model->db->query("SELECT * FROM cars")->fetchAll();
+        $cars = $model->db->query("SELECT * FROM cars ORDER BY created_at DESC")->fetchAll();
+        
+        return $cars;
+    }
+
+    public static function getUserCars($id) {
+        $model = new self();
+        $params = [
+            'id' => $id
+        ];
+        $cars = $model->db->query("SELECT * FROM cars WHERE user_id = :id ORDER BY created_at DESC", $params)->fetchAll();
         
         return $cars;
     }

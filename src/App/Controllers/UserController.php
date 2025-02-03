@@ -6,6 +6,7 @@ use Framework\Database;
 use Framework\Validation;
 use Framework\Session;
 use App\Models\UserModel;
+use App\Models\CarModel;
 
 class UserController extends Controller {
 
@@ -18,7 +19,13 @@ class UserController extends Controller {
     }
 
     public function profile(): void {
-        $this->loadView('profile');
+        $user_id = Session::get('user')['id'];
+        $users = UserModel::getAllUsers();
+        $cars = CarModel::getUserCars($user_id);
+        $this->loadView('profile', [
+            'cars' => $cars,
+            'users' => $users
+        ]);
     }
 
     public function store() : void {
@@ -144,6 +151,13 @@ class UserController extends Controller {
     }
 
     public function logout() : void {
+        Session::clearAll();
+        header('Location: /');
+    }
+
+    public function delete() {
+        $id = Session::get('user')['id'];
+        UserModel::delete($id);
         Session::clearAll();
         header('Location: /');
     }

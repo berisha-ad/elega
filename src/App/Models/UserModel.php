@@ -49,4 +49,12 @@ class UserModel extends Model {
 
         return $users;
     }
+
+    public static function delete($user_id) {
+        $model = new self();
+
+        $model->db->query('DELETE FROM users WHERE id = :id', [
+            'id' => $user_id
+        ]);
+    }
 }

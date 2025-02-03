@@ -1,0 +1,2 @@
+INSERT INTO cars (user_id, medialink, brand, model, description, mileage, year, horsepower, price, created_at) 
+VALUES (1, './uploads/1738528761_benz-cklasse.jpg', 'Mercedes', 'C-Klasse', 'Luxuslimousine mit Top-Ausstattung', 120000, 2018, 184, 28000, NOW());

@@ -17,3 +17,4 @@ $router->get('/auth/login', 'UserController@login');
 $router->post('/auth/register', 'UserController@store');
 $router->post('/auth/login', 'UserController@authenticate');
 $router->post('/auth/logout', 'UserController@logout');
+$router->post('/auth/delete', 'UserController@delete');
