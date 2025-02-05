@@ -31,9 +31,18 @@ $cities = [
                 <?php }} ?>
                 </ul>
                 <form class="login-form" action="/auth/register" method="POST" novalidate>
-                    <input type="text" id="username" name="username" value="<?= $user['username'] ?? '' ?>" placeholder="Nutzername" required>
-                    <input type="email" id="email" name="email" value="<?= $user['email'] ?? '' ?>" placeholder="E-Mail-Adresse" required>
-                    <input type="password" id="password" name="password" placeholder="Passwort (mind. 8 Zeichen)" required>
+                    <div class="input-block">
+                        <input type="text" id="username" name="username" value="<?= $user['username'] ?? '' ?>" placeholder="Nutzername" required>
+                        <span id="messageUsername"></span>
+                    </div>
+                    <div class="input-block">
+                        <input type="email" id="email" name="email" value="<?= $user['email'] ?? '' ?>" placeholder="E-Mail-Adresse" required>
+                        <span id="messageEmail"></span>
+                    </div>
+                    <div class="input-block">
+                        <input type="password" id="password" name="password" placeholder="Passwort (mind. 8 Zeichen)" required>
+                        <span id="messagePassword"></span>
+                    </div>
                     <input type="password" name="confirm" placeholder="Passwort bestätigen" required>
                     <div class="create-input-wrapper">
                         <label for="city">Stadt: </label>

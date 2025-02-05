@@ -34,25 +34,25 @@
             </div>
             <div class="create-input-wrapper">
                 <label for="image">Bilder hochladen</label>
-                <input type="file" name="image">
-                <?php if(isset($medialink)) { ?>
-                <img src="../<?= htmlspecialchars($medialink) ?>" alt="Vorschau" style="max-width: 200px;">
-                <input type="hidden" name="existing_file" value="<?= htmlspecialchars($medialink) ?>">
+                <input type="file" name="image" id="image">
+                <?php if(isset($data['medialink'])) { ?>
+                <img src="../<?= htmlspecialchars($data['medialink']) ?>" alt="Vorschau" style="max-width: 200px;">
+                <input type="hidden" name="existing_file" value="<?= htmlspecialchars($data['medialink']) ?>">
                 <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
                 <input type="hidden" name="_method" value="<?= htmlspecialchars($method) ?>">
                 <?php } ?>
             </div>
             <div class="create-input-wrapper">
                 <label for="model">Fahrzeugmodell: </label>
-                <input type="text" name="model" value="<?= $data['model'] ?? ''; ?>">
+                <input type="text" id="model" name="model" value="<?= $data['model'] ?? ''; ?>">
             </div>
             <div class="create-input-wrapper">
                 <label for="description">Beschreibung: </label>
-                <textarea type="text" rows="10" name="description"><?= $data['description'] ?? ''; ?></textarea>
+                <textarea type="text" rows="10" id="description" name="description"><?= $data['description'] ?? ''; ?></textarea>
             </div>
             <div class="create-input-wrapper">
                 <label for="mileage">Kilometerstand: </label>
-                <input type="number" value="<?= $data['mileage'] ?? ''; ?>" name="mileage">
+                <input type="number" value="<?= $data['mileage'] ?? ''; ?>" name="mileage" id="mileage">
             </div>
             <div class="create-input-wrapper">
                 <label for="year">Erstzulassung: </label>
@@ -65,11 +65,11 @@
             </div>
             <div class="create-input-wrapper">
                 <label for="horsepower">Leistung(in PS): </label>
-                <input type="number" value="<?= $data['horsepower'] ?? ''; ?>" name="horsepower">
+                <input type="number" value="<?= $data['horsepower'] ?? ''; ?>" name="horsepower" id="horsepower">
             </div>
             <div class="create-input-wrapper">
                 <label for="price">Preis (in €): </label>
-                <input type="number" value="<?= $data['price'] ?? ''; ?>" name="price">
+                <input type="number" value="<?= $data['price'] ?? ''; ?>" name="price" id="price">
             </div>
             <div class="create-input-wrapper">
                 <input class="btn" type="submit" value="Speichern" name="send">

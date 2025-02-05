@@ -15,14 +15,19 @@ const navbar = document.getElementById('navbar');
 const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
+const messagePassword = document.getElementById('messagePassword');
+const messageUsername = document.getElementById('messageUsername');
+const messageEmail = document.getElementById('messageEmail');
 
 function validateUsername() {
   if (username.value.length <= 5) {
     username.classList.remove('valid');
     username.classList.add('invalid');
+    messageUsername.innerText = 'Zu kurz';
   } else {
     username.classList.remove('invalid');
     username.classList.add('valid');
+    messageUsername.innerText = '';
   }
 }
 
@@ -31,9 +36,11 @@ function validateEmail() {
   if (!emailPattern.test(email.value)) {
     email.classList.remove('valid');
     email.classList.add('invalid');
+    messageEmail.innerText = 'Ungültige Email';
   } else {
     email.classList.remove('invalid');
     email.classList.add('valid');
+    messageEmail.innerText = '';
   }
 }
 
@@ -42,9 +49,11 @@ function validatePassword() {
   if (!passwordPattern.test(password.value)) {
     password.classList.remove('valid');
     password.classList.add('invalid');
+    messagePassword.innerText = 'Zu schwach';
   } else {
     password.classList.remove('invalid');
     password.classList.add('valid');
+    messagePassword.innerText = '';
   }
 }
 

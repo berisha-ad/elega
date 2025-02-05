@@ -192,6 +192,17 @@ p {
     background-color: rgb(255, 134, 134);
 }
 
+.input-block {
+    position: relative;
+}
+
+#messageUsername , #messagePassword, #messageEmail {
+    position: absolute;
+    top: 27%;
+    right: 0.7rem;
+    color: rgb(139, 0, 0);
+}
+
 /* HERO SECTION */
 
 .hero-section {

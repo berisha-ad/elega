@@ -90,6 +90,8 @@ class CarController extends Controller {
             $this->loadView('createCar', [
                 'errors' => $errors,
                 'data' => $data,
+                'method' => $method ?? '',
+                'id' => $id ?? ''
             ]);
             exit;
         }

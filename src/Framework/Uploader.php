@@ -37,7 +37,7 @@ class Uploader {
 
         $targetDir = basePath("public/{$uploadDir}");
         if (!is_dir($targetDir)) {
-            mkdir($targetDir, 0777, true);
+            mkdir($targetDir, 0755, true);
         }
 
         $uniqueFileName = time() . '_' . $fileName; // Um Namenskonflikte zu vermeiden
