@@ -6,7 +6,7 @@ use Exception;
 use App\Controllers\Controller;
 
 class Uploader {
-    private static array $allowedExtensions = ['jpg', 'jpeg', 'png'];
+    private static array $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
     private static int $maxFileSize = 1 * 1024 * 1024; 
 
     public static function uploadFile(array $file): ?string {

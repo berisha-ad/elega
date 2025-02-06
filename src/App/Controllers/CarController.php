@@ -139,6 +139,11 @@ class CarController extends Controller {
         $method = $_POST['_method'];
         $id = $_POST['id'];
         if($method === 'DELETE') {
+            $car = Carmodel::getCar($id);
+            $file = "/var/www/html/public/" . $car['medialink'];
+            if (file_exists($file)) {
+                unlink($file);
+            }
             CarModel::deleteCar($id);
             header('Location: /fahrzeuge');
         }
