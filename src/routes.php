@@ -9,6 +9,7 @@ $router->get('/neues-inserat', 'CarController@create');
 $router->post('/fahrzeug/erstellen', 'CarController@store');
 $router->post('/fahrzeug/bearbeiten', 'CarController@edit');
 $router->post('/fahrzeug/entfernen', 'CarController@delete');
+$router->get('/search', 'CarController@search');
 
 $router->get('/profile', 'UserController@profile');
 $router->get('/auth/register', 'UserController@create');

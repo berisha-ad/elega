@@ -5,6 +5,7 @@
 
 <section class="show-section container">
     <div class="show-wrapper">
+        <a href="/fahrzeuge" class="btn">Zurück</a>
         <h1><?= $car['brand'] . ' ' . $car['model'] ?></h1>
         <img class="border car-image-big" src="<?= $car['medialink'] ?>" alt="<?= $car['brand'] ?> <?= $car['model'] ?>">
         <p class="max-w-50"><?= $car['description'] ?></p>

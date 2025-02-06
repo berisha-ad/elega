@@ -164,4 +164,15 @@ class CarController extends Controller {
             ]);
         }
     }
+
+    public function search() {
+        $search_term = sanitize($_GET['search']);
+        $cars = CarModel::searchCars($search_term);
+        $users = UserModel::getAllUsers();
+        $this->loadView("cars", [
+            'cars' => $cars,
+            'users' => $users,
+            'search_term' => $search_term
+        ]);
+    }
 }

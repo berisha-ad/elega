@@ -89,4 +89,17 @@ class CarModel extends Model {
 
         $model->db->query($query, $data);
     }
+
+    public static function searchCars($search_term) {
+        $model = new self();
+
+        $data = [
+            'search_term' => '%' . $search_term . '%'
+        ];
+
+        $query = 'SELECT * From cars WHERE brand LIKE :search_term OR model LIKE :search_term OR year LIKE :search_term';
+
+        $cars = $model->db->query($query, $data)->fetchAll();
+        return $cars;
+    }
 }

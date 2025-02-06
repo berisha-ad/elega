@@ -9,7 +9,7 @@
     "Kia", "Koenigsegg", "Lamborghini", "Land Rover", "Lexus", "Lincoln", "Lotus",
     "Maserati", "Mazda", "McLaren", "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan",
     "Opel", "Pagani", "Peugeot", "Porsche", "Ram", "Renault", "Rolls-Royce",
-    "Saab", "Seat", "Skoda", "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen",
+    "Saab", "Seat", "Skoda", "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen(VW)",
     "Volvo"];
 
     $startYear = 1960;

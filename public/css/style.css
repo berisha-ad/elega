@@ -203,6 +203,14 @@ p {
     color: rgb(139, 0, 0);
 }
 
+
+
+
+
+
+
+
+
 /* HERO SECTION */
 
 .hero-section {
@@ -244,6 +252,13 @@ p {
     width: 100%;
     z-index: 1;
 }
+
+
+
+
+
+
+
 
 /* NEWCARS SECTION */
 
@@ -335,6 +350,15 @@ p {
     gap: 1rem;
 }
 
+
+
+
+
+
+
+
+
+
 /* CARS SECTION */
 
 .cars-section {
@@ -343,12 +367,24 @@ p {
 .count {
     border-radius: 99rem;
     padding: 0.5rem 1rem;
+    height: fit-content;
+    width: fit-content;
 }
 
 .count-wrapper {
     display: flex;
     gap: 1rem;
+    align-items: center;
 }
+
+
+
+
+
+
+
+
+
 
 /* PROFILE SECTION */
 
@@ -361,6 +397,20 @@ p {
     flex-direction: column;
     gap: 2rem;
 }
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
 
 
 /* SHOW SECTION */
@@ -375,6 +425,21 @@ p {
     margin-top: 2rem;
     gap: 1rem;
 }
+
+.show-wrapper .btn {
+    width: fit-content;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /* CREATE SECTION */
 
@@ -408,6 +473,17 @@ p {
     width: 100%;
     padding: 0.5rem 1rem;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /* LOGIN SECTION */
 
@@ -489,6 +565,63 @@ p {
     flex-direction: column;
     gap: 1rem;
 }
+
+
+
+
+
+
+
+
+/* SEARCH */
+
+.search-wrapper {
+    margin-left: auto;
+}
+
+.search-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-input {
+    background-color: #071714;
+    padding: 0.8rem 1rem;
+    border-radius: 99rem;
+    border: 0.025rem solid #444;
+    color: #b1b1b1;
+    width: 20rem;
+}
+
+.search-input::placeholder {
+    color: #444;
+}
+
+.search-btn {
+    background-color: #071714;
+    padding: 0.8rem 1rem;
+    border-radius: 99rem;
+    border: 0.025rem solid #444;
+    color: #ccc;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background-color: #101010;
+}
+
+.search-input:focus {
+    outline: 1px solid #bbb;
+}
+
+
+
+
+
+
+
+
 
 /* RESPONSIVE */
 
@@ -594,7 +727,7 @@ p {
 
 @media (max-width: 450px) {
    .car-card {
-        height: 400px;
+        height: 450px;
         flex-direction: column;
    }
 
@@ -633,5 +766,34 @@ p {
    .count-wrapper {
     flex-direction: column;
     display: inline-flex;
+    align-items: flex-start;
+   }
+
+   .cars-section h1 {
+    font-size: 2rem;
+    line-height: 1.3em;
+   }
+
+   .search-input {
+    width: 100%;
+    height: 2.3rem;
+   }
+
+   .search-btn {
+    height: 2.3rem;
+    padding: 0.3rem 0.5rem;
+   }
+
+   .search-form {
+    margin-top: 2rem;
+   }
+
+   .add-car {
+    padding: 0.5rem 0.6rem;
+   }
+
+   .profile-header h2 {
+    font-size: 2rem;
+    margin: 0;
    }
 }

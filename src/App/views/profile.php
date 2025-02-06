@@ -6,7 +6,7 @@
 <section class="profile-section container">
     <div class="profile-content">
         <h1 class="color-grey h2">Willkommen, <?= Session::get('user')['username'] ?>!</h1>
-        <h2 class="h1">Deine Inserate</h2>
+        <div class="profile-header"><h2 class="h1">Deine Inserate</h2><a href="/neues-inserat" class="btn add-car">&#9547;</a></div>
         <?php require(basePath('src/App/templates/carsGrid.php')) ?>
         <div class="btn-wrapper">
             <form action="/auth/logout" method="POST">
