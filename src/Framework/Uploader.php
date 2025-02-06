@@ -9,7 +9,7 @@ class Uploader {
     private static array $allowedExtensions = ['jpg', 'jpeg', 'png'];
     private static int $maxFileSize = 1 * 1024 * 1024; 
 
-    public static function uploadFile(array $file, string $uploadDir = 'uploads/'): ?string {
+    public static function uploadFile(array $file): ?string {
         if (!isset($file['name']) || empty($file['name'])) {
             return null;
         }
@@ -34,6 +34,8 @@ class Uploader {
             ]);
             exit;
         }
+
+        $uploadDir = "uploads/" . date("Y") . "/" . date("m") . "/" . date("d") . "/";
 
         $targetDir = basePath("public/{$uploadDir}");
         if (!is_dir($targetDir)) {
