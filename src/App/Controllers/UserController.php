@@ -11,18 +11,18 @@ use App\Models\CarModel;
 class UserController extends Controller {
 
     public function create() : void {
-        $this->loadView('register');
+        $this->view->includePage('register');
     }
 
     public function login() : void {
-        $this->loadView('login');
+        $this->view->includePage('login');
     }
 
     public function profile(): void {
         $user_id = Session::get('user')['id'];
         $users = UserModel::getAllUsers();
         $cars = CarModel::getUserCars($user_id);
-        $this->loadView('profile', [
+        $this->view->includePage('profile', [
             'cars' => $cars,
             'users' => $users
         ]);
@@ -66,7 +66,7 @@ class UserController extends Controller {
         }
         
         if (!empty($errors)) {
-            $this->loadView('register', [
+            $this->view->includePage('register', [
                 'errors' => $errors,
                 'user' => [
                     'username' => $username,
@@ -80,7 +80,7 @@ class UserController extends Controller {
     
         if($userExists) {
             $errors['user'] = 'Nutzername oder Email existiert bereits!';
-            $this->loadView('register', [
+            $this->view->includePage('register', [
                 'errors' => $errors,
                 'user' => [
                     'username' => $username,
@@ -111,7 +111,7 @@ class UserController extends Controller {
         }
 
         if(!empty($errors)) {
-            $this->loadView('login', [
+            $this->view->includePage('login', [
                 'errors' => $errors
             ]);
             exit;
@@ -124,7 +124,7 @@ class UserController extends Controller {
         }
 
         if(!empty($errors)) {
-            $this->loadView('login', [
+            $this->view->includePage('login', [
                 'errors' => $errors
             ]);
             exit;
@@ -135,7 +135,7 @@ class UserController extends Controller {
         }
 
         if(!empty($errors)) {
-            $this->loadView('login', [
+            $this->view->includePage('login', [
                 'errors' => $errors
             ]);
             exit;

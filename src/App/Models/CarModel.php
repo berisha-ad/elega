@@ -7,14 +7,14 @@ class CarModel extends Model {
     public static function index() {
         $model = new self();
 
-        $cars = $model->db->query("SELECT * FROM cars ORDER BY created_at DESC LIMIT 3")->fetchAll();
+        $cars = $model->db->query("SELECT c.*, u.path AS medialink FROM cars AS c LEFT JOIN uploads AS u ON c.upload_id = u.id ORDER BY created_at DESC LIMIT 3")->fetchAll();
 
         return $cars;
     }
 
     public static function getAllCars() {
         $model = new self();
-        $cars = $model->db->query("SELECT * FROM cars ORDER BY created_at DESC")->fetchAll();
+        $cars = $model->db->query("SELECT c.*, u.path AS medialink FROM cars AS c LEFT JOIN uploads AS u ON c.upload_id = u.id")->fetchAll();
         
         return $cars;
     }
@@ -24,7 +24,7 @@ class CarModel extends Model {
         $params = [
             'id' => $id
         ];
-        $cars = $model->db->query("SELECT * FROM cars WHERE user_id = :id ORDER BY created_at DESC", $params)->fetchAll();
+        $cars = $model->db->query("SELECT c.*, u.path AS medialink FROM cars AS c LEFT JOIN uploads AS u ON c.upload_id = u.id WHERE user_id = :id ORDER BY created_at DESC", $params)->fetchAll();
         
         return $cars;
     }
@@ -34,7 +34,7 @@ class CarModel extends Model {
         $model = new self();
 
         $data = [
-            'medialink' => $media_link,
+            'upload_id' => $media_link,
             'user_id' => $user_id,
             'brand' => $brand,
             'model' => $modell,
@@ -45,7 +45,7 @@ class CarModel extends Model {
             'price' => $price
         ];
 
-        $query = "INSERT INTO cars (medialink, user_id, brand, model, description, mileage, year, horsepower, price) VALUES (:medialink, :user_id, :brand, :model, :description, :mileage, :year, :horsepower, :price)";
+        $query = "INSERT INTO cars (upload_id, user_id, brand, model, description, mileage, year, horsepower, price) VALUES (:upload_id, :user_id, :brand, :model, :description, :mileage, :year, :horsepower, :price)";
 
         $model->db->query($query, $data);
     }
@@ -54,7 +54,7 @@ class CarModel extends Model {
 
         $model = new self();
 
-        $car = $model->db->query('SELECT * FROM cars WHERE id = :id', [
+        $car = $model->db->query('SELECT c.*, u.path AS medialink FROM cars AS c LEFT JOIN uploads AS u ON c.upload_id = u.id WHERE c.id = :id;', [
             'id' => $id
         ])->fetch();
 
@@ -73,7 +73,7 @@ class CarModel extends Model {
         $model = new self();
 
         $data = [
-            'medialink' => $media_link,
+            'upload_id' => $media_link,
             'brand' => $brand,
             'model' => $modell,
             'description' => $description,
@@ -84,7 +84,7 @@ class CarModel extends Model {
             'id' => $id
         ];
 
-        $query = "UPDATE cars SET medialink = :medialink, brand = :brand, model = :model, description = :description,
+        $query = "UPDATE cars SET upload_id = :upload_id, brand = :brand, model = :model, description = :description,
         mileage = :mileage, year = :year, horsepower = :horsepower, price = :price WHERE id = :id";
 
         $model->db->query($query, $data);

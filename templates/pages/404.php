@@ -1,5 +1,7 @@
-<?php require(basePath('src/App/templates/head.php')) ?>
-<?php require(basePath('src/App/templates/navbar.php')) ?>
+<?php 
+    $this->includePartial('head');
+    $this->includePartial('navbar') 
+?>
 
 <section class="error-section container">
     <div class="error-content">
@@ -10,4 +12,4 @@
 </section>
 
 
-<?php require(basePath('src/App/templates/footer.php')) ?>
+<?php $this->includePartial('footer'); ?>

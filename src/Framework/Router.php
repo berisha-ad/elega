@@ -3,6 +3,7 @@
 namespace Framework;
 
 use App\Controllers\Controller;
+use App\View;
 
 class Router {
     protected $routes = [];
@@ -44,7 +45,7 @@ class Router {
             }
         }
         http_response_code(404);
-        Controller::loadView("404");
+        (new View())->includePage('404');
         exit;
     }
 }

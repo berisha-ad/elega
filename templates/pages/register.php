@@ -1,5 +1,7 @@
-<?php require(basePath('src/App/templates/head.php')) ?>
-<?php require(basePath('src/App/templates/navbar.php')) ?>
+<?php 
+    $this->includePartial('head');
+    $this->includePartial('navbar') 
+?>
 
 <?php  
 $cities = [

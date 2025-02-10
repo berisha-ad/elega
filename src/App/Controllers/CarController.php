@@ -8,13 +8,14 @@ use Framework\Session;
 use Framework\Uploader;
 use App\Models\CarModel;
 use App\Models\UserModel;
+use App\Models\UploadModel;
 
 class CarController extends Controller {
 
     public function index() : void {
         $cars = CarModel::getAllCars();
         $users = UserModel::getAllUsers();
-        $this->loadView("cars", [
+        $this->view->includePage("cars", [
             'cars' => $cars,
             'users' => $users
         ]);
@@ -22,7 +23,7 @@ class CarController extends Controller {
 
     public function create() : void {
         $cars = CarModel::getAllCars();
-        $this->loadView("createCar", []);
+        $this->view->includePage("createCar", []);
     }
 
     public function store() : void {
@@ -41,7 +42,7 @@ class CarController extends Controller {
         }
         # Wenn das Inserat nur geupdatet wird 
         if (isset($_POST['existing_file'])) {
-            $medialink = $_POST['existing_file'];
+            $upload_id = $_POST['existing_file'];
         }
         
 
@@ -83,11 +84,11 @@ class CarController extends Controller {
             'year' => $year,
             'horsepower' => $horsepower,
             'price' => $price,
-            'medialink' => $medialink ?? ''
+            'upload_id' => $upload_id ?? ''
         ];
 
         if(!empty($errors)) {
-            $this->loadView('createCar', [
+            $this->view->includePage('createCar', [
                 'errors' => $errors,
                 'data' => $data,
                 'method' => $method ?? '',
@@ -98,9 +99,9 @@ class CarController extends Controller {
 
         try {
             if (!empty($_FILES['image']['name'])) {
-                $data['medialink'] = Uploader::uploadFile($_FILES['image']);
+                $data['upload_id'] = (new UploadModel())->createImageUpload($_FILES['image'], $errors);
             } elseif (isset($_POST['existing_file'])) {
-                $data['medialink'] = $_POST['existing_file'];
+                $data['upload_id'] = $_POST['existing_file'];
             } else {
                 $errors['file'] = 'Lade ein Bild hoch!';
             }
@@ -110,15 +111,15 @@ class CarController extends Controller {
 
 
         if(!empty($errors)) {
-            $this->loadView('createCar', [
+            $this->view->includePage('createCar', [
                 'errors' => $errors,
                 'data' => $data,
             ]);
         } else {
             if(isset($method) && $method === 'PUT') {
-                Carmodel::updateCar($id, $data['medialink'], $brand, $model, $description, $mileage, $year, $horsepower, $price);
+                Carmodel::updateCar($id, $data['upload_id'], $brand, $model, $description, $mileage, $year, $horsepower, $price);
             } else {
-                CarModel::createCar($data['medialink'], $user_id, $brand, $model, $description, $mileage, $year, $horsepower, $price);
+                CarModel::createCar($data['upload_id'], $user_id, $brand, $model, $description, $mileage, $year, $horsepower, $price);
             }
             header('Location: /fahrzeuge');
         }
@@ -129,7 +130,7 @@ class CarController extends Controller {
 
         $users = UserModel::getAllUsers();
         $car = CarModel::getCar($id);
-        $this->loadView('show', [
+        $this->view->includePage('show', [
             'car' => $car,
             'users' => $users
         ]);
@@ -140,7 +141,7 @@ class CarController extends Controller {
         $id = $_POST['id'];
         if($method === 'DELETE') {
             $car = Carmodel::getCar($id);
-            $file = "/var/www/html/public/" . $car['medialink'];
+            $file = "/var/www/html/public/" . $car['upload_id'];
             if (file_exists($file)) {
                 unlink($file);
             }
@@ -154,10 +155,10 @@ class CarController extends Controller {
         $id = $_POST['id'];
         if($method === 'PUT') {
             $car = CarModel::getCar($id);
-            $this->loadView('createCar', [
+            $this->view->includePage('createCar', [
                 'id' => $car['id'],
                 'user_id' => $car['user_id'],
-                'medialink' => $car['medialink'],
+                'upload_id' => $car['upload_id'],
                 'brand' => $car['brand'],
                 'model' => $car['model'],
                 'description' => $car['description'],
@@ -174,7 +175,7 @@ class CarController extends Controller {
         $search_term = sanitize($_GET['search']);
         $cars = CarModel::searchCars($search_term);
         $users = UserModel::getAllUsers();
-        $this->loadView("cars", [
+        $this->view->includePage("cars", [
             'cars' => $cars,
             'users' => $users,
             'search_term' => $search_term

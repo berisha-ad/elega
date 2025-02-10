@@ -3,25 +3,12 @@
 namespace App\Controllers;
 
 use Framework\Database;
+use App\View;
 
 abstract class Controller {
-    protected ?Database $db;
+    protected View $view;
 
     public function __construct() {
-        $config = require basePath('config.php');
-        $this->db = new Database($config);
-    }
-
-
-    public static function loadView($view, $data = []) {
-
-        $viewPath = basePath("src/App/views/{$view}.php");
-        if (file_exists($viewPath)) {
-            extract($data);
-            require $viewPath;
-        } else {
-            echo "{$view} not Found!";
-        }
-        
+        $this->view = new View();
     }
 }

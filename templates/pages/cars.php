@@ -1,5 +1,7 @@
-<?php require(basePath('src/App/templates/head.php')) ?>
-<?php require(basePath('src/App/templates/navbar.php')) ?>
+<?php 
+    $this->includePartial('head');
+    $this->includePartial('navbar') 
+?>
 
 
 
@@ -19,7 +21,7 @@
     <h1 class="m-b-3 h2 m-t-2"><?= isset($search_term) ? 'Suchergebnisse für "' . $search_term . '"' : 'Alle Fahrzeuge' ?></h1>
 
 
-<?php require(basePath('src/App/templates/carsGrid.php')) ?>
+    <?php $this->includePartial('carsGrid'); ?>
     <?php if (isset($search_term)) { ?>
         <a href="/fahrzeuge" class="btn m-t-2">Alle Fahrzeuge</a>
     <?php } ?>
@@ -28,4 +30,4 @@
 
 
 
-<?php require(basePath('src/App/templates/footer.php')) ?>
+<?php $this->includePartial('footer'); ?>

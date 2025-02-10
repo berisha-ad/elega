@@ -11,7 +11,7 @@ class HomeController extends Controller {
     public function index() {
         $cars = CarModel::index();
         $users = UserModel::getAllUsers();
-        $this->loadView("home", [
+        $this->view->includePage("home", [
             'cars' => $cars,
             'users' => $users
         ]);

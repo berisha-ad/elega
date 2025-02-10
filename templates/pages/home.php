@@ -2,8 +2,10 @@
     use Framework\Session;
 ?>
 
-<?php require(basePath('src/App/templates/head.php')) ?>
-<?php require(basePath('src/App/templates/navbar.php')) ?>
+<?php 
+    $this->includePartial('head');
+    $this->includePartial('navbar') 
+?>
 
     <main>
         <section class="hero-section">
@@ -23,8 +25,8 @@
 
         <section class="cars-section container">
             <h2 class="m-b-3">Kürzlich hochgeladen</h2>
-            <?php require(basePath('src/App/templates/carsGrid.php')) ?>
+            <?php $this->includePartial('carsGrid'); ?>
             <a class="btn m-t-2" href="/fahrzeuge">Alle Fahrzeuge</a>
         </section>
     </main>
-    <?php require(basePath('src/App/templates/footer.php')) ?>
+    <?php $this->includePartial('footer'); ?>

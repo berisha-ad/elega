@@ -12,10 +12,18 @@ CREATE TABLE users (
     city VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE uploads (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    path VARCHAR(255) NOT NULL,
+    mime_type VARCHAR(50) NOT NULL,
+    size VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE cars (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
-    medialink VARCHAR(255) NOT NULL,
+    upload_id INT NOT NULL,
     brand VARCHAR(50) NOT NULL,
     model VARCHAR(50) NOT NULL,
     description TEXT NOT NULL,
@@ -25,4 +33,5 @@ CREATE TABLE cars (
     price MEDIUMINT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (upload_id) REFERENCES uploads(id) ON DELETE CASCADE
 );
